@@ -1,7 +1,507 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">9 Полезных Программ и 5 Антивирусов для Компьютера</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            line-height: 1.6;
+            transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
+        }
+
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in;
+        }
+
+        body.light-theme header {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .controls select, .controls button {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #2a5298;
+            color: #fff;
+            transition: background 0.3s;
+        }
+
+        .controls select:hover, .controls button:hover {
+            background: #1e3c72;
+        }
+
+        .container, .antivirus-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        body.light-theme .card {
+            background: #f9f9f9;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+        .card:nth-child(9) { animation-delay: 0.9s; }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            font-size: 0.9em;
+            margin: 0 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2a5298;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .btn:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin: 40px 0 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 40px;
+        }
+
+        body.light-theme footer {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #2a5298;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .card h2 {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .controls {
+                top: 10px;
+                right: 10px;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div class="controls">
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+        </select>
+        <button id="theme-toggle">Светлая тема</button>
+    </div>
+
+    <header>
+        <h1 id="header-title">9 Полезных Программ и 5 Антивирусов для Компьютера</h1>
+        <p id="header-subtitle">Откройте для себя лучшие инструменты для повышения продуктивности и защиты!</p>
+    </header>
+
+    <div class="container">
+        <!-- Программа 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Notion" alt="Notion">
+            <div class="card-content">
+                <h2 data-lang-key="notion-title">Notion</h2>
+                <p data-lang-key="notion-desc">Универсальное приложение для заметок, управления проектами и совместной работы.</p>
+                <a href="https://www.notion.so" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=VS+Code" alt="Visual Studio Code">
+            <div class="card-content">
+                <h2 data-lang-key="vscode-title">Visual Studio Code</h2>
+                <p data-lang-key="vscode-desc">Мощный редактор кода с поддержкой множества языков программирования.</p>
+                <a href="https://code.visualstudio.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Slack" alt="Slack">
+            <div class="card-content">
+                <h2 data-lang-key="slack-title">Slack</h2>
+                <p data-lang-key="slack-desc">Платформа для командного общения и интеграции с другими сервисами.</p>
+                <a href="https://slack.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 4 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Zoom" alt="Zoom">
+            <div class="card-content">
+                <h2 data-lang-key="zoom-title">Zoom</h2>
+                <p data-lang-key="zoom-desc">Инструмент для видеоконференций и удаленной работы.</p>
+                <a href="https://zoom.us" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 5 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=OBS+Studio" alt="OBS Studio">
+            <div class="card-content">
+                <h2 data-lang-key="obs-title">OBS Studio</h2>
+                <p data-lang-key="obs-desc">Программа для записи видео и прямых трансляций.</p>
+                <a href="https://obsproject.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 6 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Blender" alt="Blender">
+            <div class="card-content">
+                <h2 data-lang-key="blender-title">Blender</h2>
+                <p data-lang-key="blender-desc">Бесплатный инструмент для 3D-моделирования и анимации.</p>
+                <a href="https://www.blender.org" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 7 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=GIMP" alt="GIMP">
+            <div class="card-content">
+                <h2 data-lang-key="gimp-title">GIMP</h2>
+                <p data-lang-key="gimp-desc">Мощный редактор изображений с открытым исходным кодом.</p>
+                <a href="https://www.gimp.org" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 8 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=7-Zip" alt="7-Zip">
+            <div class="card-content">
+                <h2 data-lang-key="7zip-title">7-Zip</h2>
+                <p data-lang-key="7zip-desc">Бесплатный архиватор с высокой степенью сжатия.</p>
+                <a href="https://www.7-zip.org" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Программа 9 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=VLC" alt="VLC Media Player">
+            <div class="card-content">
+                <h2 data-lang-key="vlc-title">VLC Media Player</h2>
+                <p data-lang-key="vlc-desc">Универсальный медиаплеер для всех форматов видео и аудио.</p>
+                <a href="https://www.videolan.org/vlc" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title" data-lang-key="antivirus-title">5 Надежных Антивирусов</h2>
+    <div class="antivirus-container">
+        <!-- Антивирус 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Bitdefender" alt="Bitdefender">
+            <div class="card-content">
+                <h2 data-lang-key="bitdefender-title">Bitdefender</h2>
+                <p data-lang-key="bitdefender-desc">Мощный антивирус с высокой степенью защиты от вирусов и киберугроз.</p>
+                <a href="https://www.bitdefender.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Антивирус 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Norton" alt="Norton">
+            <div class="card-content">
+                <h2 data-lang-key="norton-title">Norton</h2>
+                <p data-lang-key="norton-desc">Надежный антивирус с функциями защиты данных и VPN.</p>
+                <a href="https://www.norton.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Антивирус 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Kaspersky" alt="Kaspersky">
+            <div class="card-content">
+                <h2 data-lang-key="kaspersky-title">Kaspersky</h2>
+                <p data-lang-key="kaspersky-desc">Антивирус с отличной защитой от вредоносных программ и фишинга.</p>
+                <a href="https://www.kaspersky.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Антивирус 4 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Avast" alt="Avast">
+            <div class="card-content">
+                <h2 data-lang-key="avast-title">Avast</h2>
+                <p data-lang-key="avast-desc">Популярный бесплатный антивирус с функциями защиты в реальном времени.</p>
+                <a href="https://www.avast.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+
+        <!-- Антивирус 5 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150?text=Malwarebytes" alt="Malwarebytes">
+            <div class="card-content">
+                <h2 data-lang-key="malwarebytes-title">Malwarebytes</h2>
+                <p data-lang-key="malwarebytes-desc">Специализируется на удалении вредоносных программ и шпионского ПО.</p>
+                <a href="https://www.malwarebytes.com" class="btn" data-lang-key="download">Скачать</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p data-lang-key="footer-text">Сайт создан с помощью нейросети Grok от xAI. Исходный код доступен на <a href="https://github.com/your-repo" target="_blank">GitHub</a>.</p>
+    </footer>
+
+    <script>
+        // Языковые данные
+        const translations = {
+            ru: {
+                'page-title': '9 Полезных Программ и 5 Антивирусов для Компьютера',
+                'header-title': '9 Полезных Программ и 5 Антивирусов для Компьютера',
+                'header-subtitle': 'Откройте для себя лучшие инструменты для повышения продуктивности и защиты!',
+                'notion-title': 'Notion',
+                'notion-desc': 'Универсальное приложение для заметок, управления проектами и совместной работы.',
+                'vscode-title': 'Visual Studio Code',
+                'vscode-desc': 'Мощный редактор кода с поддержкой множества языков программирования.',
+                'slack-title': 'Slack',
+                'slack-desc': 'Платформа для командного общения и интеграции с другими сервисами.',
+                'zoom-title': 'Zoom',
+                'zoom-desc': 'Инструмент для видеоконференций и удаленной работы.',
+                'obs-title': 'OBS Studio',
+                'obs-desc': 'Программа для записи видео и прямых трансляций.',
+                'blender-title': 'Blender',
+                'blender-desc': 'Бесплатный инструмент для 3D-моделирования и анимации.',
+                'gimp-title': 'GIMP',
+                'gimp-desc': 'Мощный редактор изображений с открытым исходным кодом.',
+                '7zip-title': '7-Zip',
+                '7zip-desc': 'Бесплатный архиватор с высокой степенью сжатия.',
+                'vlc-title': 'VLC Media Player',
+                'vlc-desc': 'Универсальный медиаплеер для всех форматов видео и аудио.',
+                'antivirus-title': '5 Надежных Антивирусов',
+                'bitdefender-title': 'Bitdefender',
+                'bitdefender-desc': 'Мощный антивирус с высокой степенью защиты от вирусов и киберугроз.',
+                'norton-title': 'Norton',
+                'norton-desc': 'Надежный антивирус с функциями защиты данных и VPN.',
+                'kaspersky-title': 'Kaspersky',
+                'kaspersky-desc': 'Антивирус с отличной защитой от вредоносных программ и фишинга.',
+                'avast-title': 'Avast',
+                'avast-desc': 'Популярный бесплатный антивирус с функциями защиты в реальном времени.',
+                'malwarebytes-title': 'Malwarebytes',
+                'malwarebytes-desc': 'Специализируется на удалении вредоносных программ и шпионского ПО.',
+                'download': 'Скачать',
+                'footer-text': 'Сайт создан с помощью нейросети Grok от xAI. Исходный код доступен на GitHub.',
+                'theme-toggle': 'Светлая тема'
+            },
+            en: {
+                'page-title': '9 Useful Programs and 5 Antivirus Software for Your Computer',
+                'header-title': '9 Useful Programs and 5 Antivirus Software for Your Computer',
+                'header-subtitle': 'Discover the best tools for productivity and protection!',
+                'notion-title': 'Notion',
+                'notion-desc': 'All-in-one app for notes, project management, and collaboration.',
+                'vscode-title': 'Visual Studio Code',
+                'vscode-desc': 'Powerful code editor with support for multiple programming languages.',
+                'slack-title': 'Slack',
+                'slack-desc': 'Platform for team communication and integration with other services.',
+                'zoom-title': 'Zoom',
+                'zoom-desc': 'Tool for video conferencing and remote work.',
+                'obs-title': 'OBS Studio',
+                'obs-desc': 'Software for video recording and live streaming.',
+                'blender-title': 'Blender',
+                'blender-desc': 'Free tool for 3D modeling and animation.',
+                'gimp-title': 'GIMP',
+                'gimp-desc': 'Powerful open-source image editing software.',
+                '7zip-title': '7-Zip',
+                '7zip-desc': 'Free archiver with high compression ratio.',
+                'vlc-title': 'VLC Media Player',
+                'vlc-desc': 'Universal media player for all video and audio formats.',
+                'antivirus-title': '5 Reliable Antivirus Software',
+                'bitdefender-title': 'Bitdefender',
+                'bitdefender-desc': 'Powerful antivirus with high protection against viruses and cyber threats.',
+                'norton-title': 'Norton',
+                'norton-desc': 'Reliable antivirus with data protection and VPN features.',
+                'kaspersky-title': 'Kaspersky',
+                'kaspersky-desc': 'Antivirus with excellent protection against malware and phishing.',
+                'avast-title': 'Avast',
+                'avast-desc': 'Popular free antivirus with real-time protection features.',
+                'malwarebytes-title': 'Malwarebytes',
+                'malwarebytes-desc': 'Specializes in removing malware and spyware.',
+                'download': 'Download',
+                'footer-text': 'This site was created with the help of the Grok neural network by xAI. Source code is available on GitHub.',
+                'theme-toggle': 'Dark Theme'
+            }
+        };
+
+        // Смена языка
+        function changeLanguage() {
+            const lang = document.getElementById('language-select').value;
+            document.documentElement.lang = lang;
+            document.getElementById('page-title').textContent = translations[lang]['page-title'];
+            document.getElementById('header-title').textContent = translations[lang]['header-title'];
+            document.getElementById('header-subtitle').textContent = translations[lang]['header-subtitle'];
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                element.textContent = translations[lang][key];
+            });
+            document.getElementById('theme-toggle').textContent = translations[lang]['theme-toggle'];
+        }
+
+        // Смена темы
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const isLightTheme = document.body.classList.contains('light-theme');
+            document.getElementById('theme-toggle').textContent = translations[document.documentElement.lang || 'ru']['theme-toggle'];
+        });
+
+        // Инициализация сохраненной темы и языка
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                document.getElementById('theme-toggle').textContent = translations[document.documentElement.lang || 'ru']['theme-toggle'];
+            }
+            const savedLang = localStorage.getItem('language') || 'ru';
+            document.getElementById('language-select').value = savedLang;
+            changeLanguage();
+        });
+
+        // Сохранение темы и языка
+        document.getElementById('language-select').addEventListener('change', () => {
+            localStorage.setItem('language', document.getElementById('language-select').value);
+        });
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+    </script>
 </body>
 </html>
